@@ -6,51 +6,98 @@
 
 
 tick: 60s #How frequently the pool ticks, unless testing the plugin this usually shouldn't be changed
-contribution-lock: 7d
-
 pool:
-  1: #Each key can be uniquely named whatever you please, it is probably better name it something meaningful
-    name: 'test-1'
-    #What type of mission bearer the mission is designed for. Omit this if it can be given to any mission bearer
-    #type.
+  town-mission-gatherer:
+    name: 'Town Gather Soil'
     type: 'TOWN'
-    #how long the mission lasts. The format is similar to core protect or ban commands. Simply omit the duration
-    #for a mission with infinite duration
-    duration: '2m'
-    #mission rewards are different to goal rewards. Mission rewards are given to the bearer of the mission, that being
-    #the town or the nation. Thus the only two working rewards types for mission rewards are GOVERNMENT_BANK and COMMAND
-    #Rewards should usually be given to GOALS rather than MISSIONS because players contribute to goals.
+    duration: '7d'
+    rewards:
+      1:
+        type: GOVERNMENT_BANK
+        total: 2400
+    goals:
+      1:
+        definition: 'GATHER'
+        goal: 4999
+        material: 'GRAVEL'
+        rewards:
+          1:
+            type: MONEY
+            total: 520
+          2:
+            type: EXP
+            total: 10000
+          3:
+            type: ITEM
+            total: 400
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GUNPOWDER'
+      2:
+        definition: 'GATHER'
+        goal: 6999
+        material: 'SAND'
+        rewards:
+          1:
+            type: MONEY
+            total: 1120
+          2:
+            type: EXP
+            total: 10000
+          3:
+            type: ITEM
+            total: 576
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GLASS'
+      3:
+        definition: 'GATHER'
+        goal: 14999
+        material: 'NETHERRACK'
+        rewards:
+          1:
+            type: MONEY
+            total: 1200
+          2:
+            type: EXP
+            total: 15000
+          3:
+            type: ITEM
+            total: 225
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GOLD_INGOT'
+          4:
+            type: ITEM
+            total: 450
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GLISTERING_MELON_SLICE'
+          5:
+            type: ITEM
+            total: 300
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'END_STONE'
+
+  town-mission-crop-farmer:
+    name: 'Town Farm Replant'
+    type: 'TOWN'
+    duration: '7d'
     rewards:
       1:
         type: GOVERNMENT_BANK
         total: 1000
-      2:
-        type: COMMAND
-        name: 'Extra Announcement'
-        command: 'say %s earned $%amount% from their towny mission!!! They are big rich'
-        total: 1000
-
-    #The definition of the goal is the type of goal it is.
     goals:
       1:
-        definition: 'CHAT'
-        goal: 5
-        word: 'Gamer'
-        #this goal does not have any rewards
-      2:
         definition: 'GATHER'
-        goal: 100
-        material: 'PUMPKIN'
-        #Goals have rewards. These rewards are distributed on completion of the mission. There are many types
-        #of goal rewards.
-        #  - MONEY <- Deposits money to the players account
-        #  - EXP <- Gives the player n experience orbs
-        #  - COMMAND <- Runs a command  , Use the %s to substitute the player and %amount% to substitute the amount given
-        #  - ITEM  <- Gives the player an item. If they are offline its given on join
-        #  - TEST  <- This reward isnt useful it just prints to ur console lol
-
-        #rewards are distributed on goal completion based on contribution. This was not done for the whole mission
-        #because how do you weigh different goals to each other.
+        goal: 4999
+        material: WHEAT
         rewards:
           1:
             type: MONEY
@@ -61,29 +108,970 @@ pool:
           3:
             #view https://www.spigotmc.org/wiki/itemstack-serialization/ for more
             type: ITEM
-            total: 50
+            total: 32
             itemstack:
-              type: DIAMOND
-              meta:
-                display-name: '&e&lDiaaaamonds'
-          4:
-            type: COMMAND
-            total: 50
-            name: 'More Boasting'
-            command: 'say Hello %s. You received %amount% brownie points :)'
-
-          5:
-            type: TEST
-            total: 1000
-
-      3:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'COBWEB'
+      2:
         definition: 'GATHER'
-        goal: 50
-        material: DIRT
+        goal: 9999
+        material: 'CARROT'
         rewards:
           1:
             type: MONEY
-            total: 150
+            total: 1000
+          2:
+            type: EXP
+            total: 10000
+          3:
+            #view https://www.spigotmc.org/wiki/itemstack-serialization/ for more
+            type: ITEM
+            total: 576
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GOLDEN_CARROT'
+      3:
+        definition: 'GATHER'
+        goal: 14999
+        material: POTATO
+        rewards:
+          1:
+            type: MONEY
+            total: 1200
+          2:
+            type: EXP
+            total: 10000
+          3:
+            #view https://www.spigotmc.org/wiki/itemstack-serialization/ for more
+            type: ITEM
+            total: 3749
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'BAKED_POTATO'
+          4:
+            type: ITEM
+            total: 25
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'MAGMA_CREAM'
+
+  town-mission-farm-flower: #Each key can be uniquely named whatever you please, it is probably better name it something meaningful
+    name: 'Town Farm Flower'
+    type: 'TOWN'
+    duration: '7d'
+    rewards:
+      1:
+        type: GOVERNMENT_BANK
+        total: 1000
+    goals:
+      1:
+        definition: 'GATHER'
+        goal: 8000
+        material: 'POPPY'
+        rewards:
+          1:
+            type: MONEY
+            total: 2000
+          2:
+            type: EXP
+            total: 50000
+          3:
+            type: ITEM
+            total: 16
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'ENCHANTED_BOOK'
+              meta:
+                ==: ItemMeta
+                meta-type: ENCHANTED
+                stored-enchants: 
+                  PROTECTION_ENVIRONMENTAL: 4
+      2:
+        definition: 'GATHER'
+        goal: 3000
+        material: 'DANDELION'
+        rewards:
+          1:
+            type: MONEY
+            total: 2000
+          2:
+            type: EXP
+            total: 30000
+          3:
+            type: ITEM
+            total: 48
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'EMERALD_ORE'
+          4:
+            type: ITEM
+            total: 128
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GOLD_INGOT'
+  town-mission-animals: #Each key can be uniquely named whatever you please, it is probably better name it something meaningful
+    name: 'Town Farm Animals'
+    type: 'TOWN'
+    duration: '7d'
+    rewards:
+      1:
+        type: GOVERNMENT_BANK
+        total: 1500
+    goals:
+      1:
+        definition: 'GATHER'
+        goal: 256 # 4 stacks of leather - GOOD LUCK
+        material: 'LEATHER'
+        rewards:
+          1:
+            type: MONEY
+            total: 1024
+          2:
+            type: EXP
+            total: 25600
+          3:
+            type: ITEM
+            total: 48
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GHAST_TEAR'
+      2:
+        definition: 'GATHER'
+        goal: 576
+        material: 'EGG'
+        rewards:
+          1:
+            type: MONEY
+            total: 1200
+          2:
+            type: EXP
+            total: 20000
+          3:
+            type: ITEM
+            total: 256
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GOLD_INGOT'
+      3:
+        definition: 'GATHER'
+        goal: 576
+        material: 'HONEYCOMB'
+        rewards:
+          1:
+            type: MONEY
+            total: 1500
+          2:
+            type: EXP
+            total: 20000
+          3:
+            type: ITEM
+            total: 16
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'SHULKER_SHELL'
+  town-mission-fishing: #Each key can be uniquely named whatever you please, it is probably better name it something meaningful
+    name: 'Fishing'
+    type: 'TOWN'
+    duration: '7d'
+    rewards:
+      1:
+        type: GOVERNMENT_BANK
+        total: 2500
+    goals:
+      1:
+        definition: 'GATHER'
+        goal: 128
+        material: 'COD'
+        rewards:
+          1:
+            type: MONEY
+            total: 1280
+          2:
+            type: EXP
+            total: 12800
+          3:
+            type: ITEM
+            total: 8
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'ENCHANTED_BOOK'
+              meta:
+                ==: ItemMeta
+                meta-type: ENCHANTED
+                stored-enchants:
+                  DAMAGE_ALL: 5
+      2:
+        definition: 'GATHER'
+        goal: 16
+        material: 'PUFFERFISH'
+        rewards:
+          1:
+            type: MONEY
+            total: 1600
+          2:
+            type: EXP
+            total: 16000
+          3:
+            type: ITEM
+            total: 64
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'ENDER_PEARL'
+      3:
+        definition: 'GATHER'
+        goal: 128
+        material: 'SALMON'
+        rewards:
+          1:
+            type: MONEY
+            total: 1280
+          2:
+            type: EXP
+            total: 12800
+          3:
+            type: ITEM
+            total: 4
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'ENCHANTED_BOOK'
+              meta:
+                ==: ItemMeta
+                meta-type: ENCHANTED
+                stored-enchants: 
+                  MENDING: 1
+          4:
+            type: ITEM
+            total: 64
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'SLIME_BALL'
+  town-mission-miner: #Each key can be uniquely named whatever you please, it is probably better name it something meaningful
+    name: 'Miner'
+    type: 'TOWN'
+    duration: '7d'
+    rewards:
+      1:
+        type: GOVERNMENT_BANK
+        total: 2500
+    goals:
+      1:
+        definition: 'GATHER'
+        goal: 1999
+        material: 'IRON_INGOT'
+        rewards:
+          1:
+            type: MONEY
+            total: 2000
+          2:
+            type: EXP
+            total: 15000
+          3:
+            type: ITEM
+            total: 64
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GLOW_INK_SAC'
+          4:
+            type: ITEM
+            total: 32
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'SHULKER_SHELL'
+      2:
+        definition: 'GATHER'
+        goal: 4999
+        material: 'COAL'
+        rewards:
+          1:
+            type: MONEY
+            total: 2000
+          2:
+            type: EXP
+            total: 20000
+          3:
+            type: ITEM
+            total: 100
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'DIAMOND'
+          4:
+            type: ITEM
+            total: 64
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'MYCELIUM'
+      3:
+        definition: 'GATHER'
+        goal: 19999
+        material: 'COBBLESTONE'
+        rewards:
+          1:
+            type: MONEY
+            total: 2000
+          2:
+            type: EXP
+            total: 40000
+          3:
+            type: ITEM
+            total: 64
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'COPPER_ORE'
+          4:
+            type: ITEM
+            total: 2000
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'COBBLED_DEEPSLATE'
+          5:
+            type: ITEM
+            total: 64
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'OBSIDIAN'
+  town-mission-farm-regrow:
+    name: 'Gatherer'
+    type: 'TOWN'
+    duration: '7d'
+    rewards:
+      1:
+        type: GOVERNMENT_BANK
+        total: 2400
+    goals:
+      1:
+        definition: 'GATHER'
+        goal: 4999
+        material: 'MELON'
+        rewards:
+          1:
+            type: MONEY
+            total: 500
+          2:
+            type: EXP
+            total: 100000
+      2:
+        definition: 'GATHER'
+        goal: 9999
+        material: 'PUMPKIN'
+        rewards:
+          1:
+            type: MONEY
+            total: 1000
+          2:
+            type: EXP
+            total: 200000
+      3:
+        definition: 'GATHER'
+        goal: 14999
+        material: 'SUGAR_CANE'
+        rewards:
+          1:
+            type: MONEY
+            total: 1500
+          2:
+            type: EXP
+            total: 300000
+          3:
+            type: ITEM
+            total: 500
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GOLD_INGOT'
+          4:
+            type: ITEM
+            total: 500
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GLISTERING_MELON_SLICE'
+          5:
+            type: ITEM
+            total: 500
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'END_STONE'
+
+
+#---------- NATION MISSION SEPERATOR ------------#
+
+  nation-mission-gatherer:
+    name: 'Gatherer'
+    type: 'NATION'
+    duration: '7d'
+    rewards:
+      1:
+        type: GOVERNMENT_BANK
+        total: 4800
+    goals:
+      1:
+        definition: 'GATHER'
+        goal: 9999
+        material: 'GRAVEL'
+        rewards:
+          1:
+            type: MONEY
+            total: 1040
+          2:
+            type: EXP
+            total: 40000
+          3:
+            type: ITEM
+            total: 800
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GUNPOWDER'
+      2:
+        definition: 'GATHER'
+        goal: 11999
+        material: 'SAND'
+        rewards:
+          1:
+            type: MONEY
+            total: 2240
+          2:
+            type: EXP
+            total: 20000
+          3:
+            type: ITEM
+            total: 1500
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GLASS'
+      3:
+        definition: 'GATHER'
+        goal: 29999
+        material: 'NETHERRACK'
+        rewards:
+          1:
+            type: MONEY
+            total: 2400
+          2:
+            type: EXP
+            total: 60000
+          3:
+            type: ITEM
+            total: 500
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GOLD_INGOT'
+          4:
+            type: ITEM
+            total: 900
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GLISTERING_MELON_SLICE'
+          5:
+            type: ITEM
+            total: 600
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'END_STONE'
+
+  nation-mission-crop-farmer:
+    name: 'Farmer'
+    type: 'NATION'
+    duration: '7d'
+    rewards:
+      1:
+        type: GOVERNMENT_BANK
+        total: 2000
+    goals:
+      1:
+        definition: 'GATHER'
+        goal: 9999
+        material: WHEAT
+        rewards:
+          1:
+            type: MONEY
+            total: 2000
+          2:
+            type: EXP
+            total: 10000
+          3:
+            #view https://www.spigotmc.org/wiki/itemstack-serialization/ for more
+            type: ITEM
+            total: 64
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'COBWEB'
+      2:
+        definition: 'GATHER'
+        goal: 19999
+        material: 'CARROT'
+        rewards:
+          1:
+            type: MONEY
+            total: 2000
+          2:
+            type: EXP
+            total: 40000
+          3:
+            #view https://www.spigotmc.org/wiki/itemstack-serialization/ for more
+            type: ITEM
+            total: 1000
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GOLDEN_CARROT'
+      3:
+        definition: 'GATHER'
+        goal: 29999
+        material: POTATO
+        rewards:
+          1:
+            type: MONEY
+            total: 2400
+          2:
+            type: EXP
+            total: 20000
+          3:
+            #view https://www.spigotmc.org/wiki/itemstack-serialization/ for more
+            type: ITEM
+            total: 6000
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'BAKED_POTATO'
+          4:
+            type: ITEM
+            total: 50
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'MAGMA_CREAM'
+  nation-mission-famer: #Each key can be uniquely named whatever you please, it is probably better name it something meaningful
+    name: 'Gatherer'
+    type: 'NATION'
+    duration: '7d'
+    rewards:
+      1:
+        type: GOVERNMENT_BANK
+        total: 3000
+
+    goals:
+      1:
+        definition: 'GATHER'
+        goal: 5000 # about an inventory and a half
+        material: 'RED_MUSHROOM_BLOCK'
+        rewards:
+          1:
+            type: MONEY
+            total: 5000
+          2:
+            type: EXP
+            total: 5000
+          3:
+            type: ITEM
+            total: 4
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'ENCHANTED_BOOK'
+              meta:
+                ==: ItemMeta
+                meta-type: ENCHANTED
+                stored-enchants:
+                  DURABILITY: 4
+      2:
+        definition: 'GATHER'
+        goal: 10000
+        material: PUMPKIN
+        rewards:
+          1:
+            type: MONEY
+            total: 5000
+          2:
+            type: EXP
+            total: 5000
+          3:
+            type: ITEM
+            total: 256
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'EMERALD_BLOCK'
+      3:
+        definition: 'GATHER'
+        goal: 10000
+        material: 'MELON'
+        rewards:
+          1:
+            type: MONEY
+            total: 7500
+          2:
+            type: EXP
+            total: 5000
+          3:
+            type: ITEM
+            total: 256
+            itemstack:
+              ==: org.bukkit.inventory.ItemStack
+              type: 'EMERALD_BLOCK'
+  nation-mission-gatherer-2: #Each key can be uniquely named whatever you please, it is probably better name it something meaningful
+    name: 'Gatherer'
+    type: 'NATION'
+    duration: '7d'
+    rewards:
+      1:
+        type: GOVERNMENT_BANK
+        total: 2000
+    goals:
+      1:
+        definition: 'GATHER'
+        goal: 16000
+        material: 'POPPY'
+        rewards:
+          1:
+            type: MONEY
+            total: 4000
+          2:
+            type: EXP
+            total: 100000
+
+      2:
+        definition: 'GATHER'
+        goal: 6000
+        material: 'DANDELION'
+        rewards:
+          1:
+            type: MONEY
+            total: 4000
+          2:
+            type: EXP
+            total: 60000
+          3:
+            type: ITEM
+            total: 128
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'EMERALD_ORE'
+  nation-mission-animals: #Each key can be uniquely named whatever you please, it is probably better name it something meaningful
+    name: 'Animals'
+    type: 'NATION'
+    duration: '7d'
+    rewards:
+      1:
+        type: GOVERNMENT_BANK
+        total: 3000
+    goals:
+      1:
+        definition: 'GATHER'
+        goal: 512 # 4 stacks of leather - GOOD LUCK
+        material: 'LEATHER'
+        rewards:
+          1:
+            type: MONEY
+            total: 2048
+          2:
+            type: EXP
+            total: 50000
+          3:
+            type: ITEM
+            total: 48
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GHAST_TEAR'
+      2:
+        definition: 'GATHER'
+        goal: 1000
+        material: 'EGG'
+        rewards:
+          1:
+            type: MONEY
+            total: 5000
+          2:
+            type: EXP
+            total: 5000
+          3:
+            type: ITEM
+            total: 128
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GOLD_INGOT'
+      3:
+        definition: 'GATHER'
+        goal: 1000
+        material: 'HONEYCOMB'
+        rewards:
+          1:
+            type: MONEY
+            total: 5000
+          2:
+            type: EXP
+            total: 5000
+          3:
+            type: ITEM
+            total: 16
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'SHULKER_SHELL'
+  nation-mission-fishing: #Each key can be uniquely named whatever you please, it is probably better name it something meaningful
+    name: 'Fishing'
+    type: 'NATION'
+    duration: '7d'
+    rewards:
+      1:
+        type: GOVERNMENT_BANK
+        total: 3000
+    goals:
+      1:
+        definition: 'GATHER'
+        goal: 256
+        material: 'COD'
+        rewards:
+          1:
+            type: MONEY
+            total: 4800
+          2:
+            type: EXP
+            total: 24000
+          3:
+            type: ITEM
+            total: 8
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'ENCHANTED_BOOK'
+              meta:
+                ==: ItemMeta
+                meta-type: ENCHANTED
+                stored-enchants:
+                  DAMAGE_ALL: 5
+      2:
+        definition: 'GATHER'
+        goal: 32
+        material: 'PUFFERFISH'
+        rewards:
+          1:
+            type: MONEY
+            total: 3200
+          2:
+            type: EXP
+            total: 32000
+          3:
+            type: ITEM
+            total: 64
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'ENDER_PEARL'
+      3:
+        definition: 'GATHER'
+        goal: 256
+        material: 'SALMON'
+        rewards:
+          1:
+            type: MONEY
+            total: 2400
+          2:
+            type: EXP
+            total: 24000
+          3:
+            type: ITEM
+            total: 8
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'ENCHANTED_BOOK'
+              meta:
+                ==: ItemMeta
+                meta-type: ENCHANTED
+                stored-enchants: 
+                  MENDING: 1
+          4:
+            type: ITEM
+            total: 128
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'SLIME_BALL'
+  nation-mission-miner: #Each key can be uniquely named whatever you please, it is probably better name it something meaningful
+    name: 'Miner'
+    type: 'NATION'
+    duration: '7d'
+    rewards:
+      1:
+        type: GOVERNMENT_BANK
+        total: 3000
+    goals:
+      1:
+        definition: 'GATHER'
+        goal: 3999
+        material: 'IRON_INGOT'
+        rewards:
+          1:
+            type: MONEY
+            total: 4000
+          2:
+            type: EXP
+            total: 30000
+          3:
+            type: ITEM
+            total: 128
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GLOW_INK_SAC'
+          4:
+            type: ITEM
+            total: 64
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'SHULKER_SHELL'
+      2:
+        definition: 'GATHER'
+        goal: 9999
+        material: 'COAL'
+        rewards:
+          1:
+            type: MONEY
+            total: 4000
+          2:
+            type: EXP
+            total: 40000
+          3:
+            type: ITEM
+            total: 200
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'DIAMOND'
+          4:
+            type: ITEM
+            total: 64
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'MYCELIUM'
+      3:
+        definition: 'GATHER'
+        goal: 39999
+        material: 'COBBLESTONE'
+        rewards:
+          1:
+            type: MONEY
+            total: 4000
+          2:
+            type: EXP
+            total: 80000
+          3:
+            type: ITEM
+            total: 128
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'COPPER_ORE'
+          4:
+            type: ITEM
+            total: 4000
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'COBBLED_DEEPSLATE'
+          5:
+            type: ITEM
+            total: 128
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'OBSIDIAN'
+  nation-mission-farm-regrow:
+    name: 'Gatherer'
+    type: 'NATION'
+    duration: '7d'
+    rewards:
+      1:
+        type: GOVERNMENT_BANK
+        total: 4800
+    goals:
+      1:
+        definition: 'GATHER'
+        goal: 9999
+        material: 'MELON'
+        rewards:
+          1:
+            type: MONEY
+            total: 2000
+          2:
+            type: EXP
+            total: 200000
+      2:
+        definition: 'GATHER'
+        goal: 19999
+        material: 'PUMPKIN'
+        rewards:
+          1:
+            type: MONEY
+            total: 2000
+          2:
+            type: EXP
+            total: 400000
+      3:
+        definition: 'GATHER'
+        goal: 29999
+        material: 'SUGAR_CANE'
+        rewards:
+          1:
+            type: MONEY
+            total: 6000
+          2:
+            type: EXP
+            total: 1200000
+          3:
+            type: ITEM
+            total: 2000
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GOLD_INGOT'
+          4:
+            type: ITEM
+            total: 2000
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'GLISTERING_MELON_SLICE'
+          5:
+            type: ITEM
+            total: 2000
+            itemstack:
+              v: 19
+              ==: org.bukkit.inventory.ItemStack
+              type: 'END_STONE'
 
 
 
